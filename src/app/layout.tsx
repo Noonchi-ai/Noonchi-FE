@@ -14,7 +14,8 @@ import { SITE_DESCRIPTION } from "@/constants/description";
 
 // GA4 Measurement ID는 HTML에 노출되는 공개 값이므로 기본값을 코드에 둔다.
 // 배포 환경에 NEXT_PUBLIC_GA_ID가 설정되어 있으면 그 값을 우선 사용.
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-7H7GNNG6SM";
+// 기본값은 회사 GA 계정의 "Noonchi - Web (Production)" 속성(526526890) 스트림.
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-BJ45G5B4PZ";
 
 export const viewport: Viewport = {
   width: "device-width",
