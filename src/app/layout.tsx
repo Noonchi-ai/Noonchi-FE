@@ -12,6 +12,11 @@ import ModalRender from "@/components/modal/ModalRender";
 import BannerModal from "@/components/modal/BannerModal";
 import { SITE_DESCRIPTION } from "@/constants/description";
 
+// GA4 Measurement ID는 HTML에 노출되는 공개 값이므로 기본값을 코드에 둔다.
+// 배포 환경에 NEXT_PUBLIC_GA_ID가 설정되어 있으면 그 값을 우선 사용.
+// 기본값은 회사 GA 계정의 "Noonchi - Web (Production)" 속성(526526890) 스트림.
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-BJ45G5B4PZ";
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -144,7 +149,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-dvh w-full">
         <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -152,7 +157,7 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+            gtag('config', '${GA_ID}');
           `}
         </Script>
         <AuthProvider>
